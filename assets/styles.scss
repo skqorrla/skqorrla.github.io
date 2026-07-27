@@ -1,0 +1,33 @@
+---
+title: false
+styles: true
+---
+
+// Alembic 테마의 폰트 설정을 덮어씁니다.
+// _sass/_settings.scss의 변수들이 !default로 선언돼 있으므로,
+// 반드시 아래 @import "alembic"; 보다 먼저 정의해야 적용됩니다.
+//
+// 웹폰트 자체는 _config.yml의 fonts.font_urls 에서 불러옵니다.
+
+$bodytype: (
+  font-family: '"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
+  regular: 400,
+  bold: 700,
+  italic: italic,
+  cap-height: 0.71
+);
+
+$headingtype: (
+  font-family: '"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
+  regular: 400,
+  bold: 700,
+  cap-height: 0.71
+);
+
+$monospacetype: (
+  font-family: '"D2Coding", Menlo, Consolas, monospace',
+  regular: 400,
+  cap-height: 0.70
+);
+
+@import "alembic";

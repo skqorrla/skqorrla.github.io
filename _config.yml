@@ -29,6 +29,17 @@ permalink: pretty
 logo: "https://www.gravatar.com/avatar/6c0377abcf4da91cdd35dea4554b2a4c?s=52"
 lang: ko
 
+# Load custom fonts
+# 본문/제목: Noto Sans KR (Google Fonts)
+# 코드: D2Coding subset (한글 상용 글자 포함, full 버전은 3MB에 육박해 subset 사용)
+fonts:
+  preconnect_urls:
+    - https://fonts.gstatic.com
+    - https://cdn.jsdelivr.net
+  font_urls:
+    - https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap
+    - https://cdn.jsdelivr.net/gh/wan2land/d2coding@master/d2coding-subset.css
+
 # Pagination
 paginate: 5
 paginate_path: blog/page:num
