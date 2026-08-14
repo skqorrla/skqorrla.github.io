@@ -1,0 +1,47 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}',
+  $font-family-base: ('Noto Sans KR', 'Source Sans Pro', 'Microsoft Yahei', sans-serif),
+  $font-family-heading: ('Noto Sans KR', Lato, 'Microsoft Yahei', sans-serif)
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* 코드 폰트: D2Coding subset (한글 상용 글자 포함, full 버전은 3MB에 육박해 subset 사용) */
+@font-face {
+  font-family: 'D2Coding';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('D2Coding Regular'),
+    url('https://cdn.jsdelivr.net/gh/wan2land/d2coding@master/fonts/d2coding-subset.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/wan2land/d2coding@master/fonts/d2coding-subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'D2Coding';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('D2Coding Bold'),
+    url('https://cdn.jsdelivr.net/gh/wan2land/d2coding@master/fonts/d2coding-bold-subset.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/wan2land/d2coding@master/fonts/d2coding-bold-subset.woff') format('woff');
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: 'D2Coding', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

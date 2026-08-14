@@ -2,8 +2,12 @@
 title: "프로젝트 진행 시 필요한 개발 문서 총정리: 무엇을, 언제, 왜 쓰는가"
 categories:
 - Development
-feature_image: "/assets/images/dev-docs-banner.jpeg"
-excerpt: "PRD·SRS부터 설계 문서(Design Doc·RFC·ADR), API 명세, README, 테스트 계획서, CHANGELOG, 런북, 장애 회고까지. 프로젝트 단계별로 어떤 개발 문서가 필요하고, 각각 언제 작성해서 무엇을 담아야 하는지 정리합니다."
+tags:
+- documentation
+- process
+image:
+  path: "/assets/images/dev-docs-banner.jpeg"
+description: "PRD·SRS부터 설계 문서(Design Doc·RFC·ADR), API 명세, README, 테스트 계획서, CHANGELOG, 런북, 장애 회고까지. 프로젝트 단계별로 어떤 개발 문서가 필요하고, 각각 언제 작성해서 무엇을 담아야 하는지 정리합니다."
 ---
 
 프로젝트를 시작하면 늘 같은 질문에 부딪힙니다. "문서를 어디까지 써야 하지?" 안 쓰면 3개월 뒤에 내가 왜 이렇게 짰는지 기억이 안 나고, 다 쓰자니 코드보다 문서 쓰는 시간이 더 길어집니다. 게다가 애써 쓴 문서는 대부분 금방 낡습니다.

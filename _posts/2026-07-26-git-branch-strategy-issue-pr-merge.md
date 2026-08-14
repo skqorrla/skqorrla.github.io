@@ -2,8 +2,14 @@
 title: "GitHub 협업 전략 총정리: 브랜치 전략(Git Flow vs GitHub Flow), Issue·PR 관리, Merge 전략"
 categories:
 - Git
-feature_image: "/assets/images/git-strategy-banner.jpeg"
-excerpt: "Git Flow와 GitHub Flow 두 가지 브랜치 전략의 구조와 장단점을 비교하고, Issue·PR을 체계적으로 관리하는 방법과 세 가지 merge 전략(Merge Commit, Squash, Rebase)의 선택 기준까지 한 번에 정리합니다."
+tags:
+- git
+- github
+- branch-strategy
+- pull-request
+image:
+  path: "/assets/images/git-strategy-banner.jpeg"
+description: "Git Flow와 GitHub Flow 두 가지 브랜치 전략의 구조와 장단점을 비교하고, Issue·PR을 체계적으로 관리하는 방법과 세 가지 merge 전략(Merge Commit, Squash, Rebase)의 선택 기준까지 한 번에 정리합니다."
 ---
 
 혼자 개발할 때는 `main` 브랜치에 바로 커밋해도 큰 문제가 없지만, 팀으로 협업을 시작하는 순간 "브랜치를 어떻게 나눌 것인가", "이슈와 PR을 어떻게 굴릴 것인가", "merge 버튼의 세 가지 옵션 중 뭘 눌러야 하는가"라는 질문에 부딪히게 됩니다. 이 글에서는 대표적인 브랜치 전략 두 가지(**Git Flow**, **GitHub Flow**)와 **Issue/PR 관리 전략**, 그리고 **merge 전략 3종**을 정리합니다.
