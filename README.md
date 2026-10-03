@@ -81,6 +81,13 @@ _posts/              글
 
 
 
+## 다크 모드
+
+헤더 오른쪽 끝 달/해 아이콘으로 전환합니다. 선택은 `localStorage` 의 `theme` 에 저장되어 OS 설정보다 우선하고, 저장값이 없으면 OS 설정(`prefers-color-scheme`)을 따릅니다.
+`_layouts/default.html` 의 인라인 스크립트가 CSS 로드 전에 `<html data-theme="…">` 를 정해 깜빡임을 막습니다.
+다크 토큰은 `assets/css/main.scss` 의 `@mixin dark-tokens` 한 곳에 있고, Figma 의 "OY Tokens" / "Blog Key Color" 컬렉션 Dark 모드와 같은 값입니다.
+키 컬러는 다크에서 한 단계 밝은 `#A06AE8` 을 씁니다.
+
 ## 키 컬러 바꾸기
 
 `assets/css/main.scss` 맨 위 `:root` 의 네 줄만 바꾸면 전체가 바뀝니다. 후보 B/C/D 값이 주석으로 적혀 있습니다.

@@ -20,6 +20,10 @@ layout: default
       {% endfor %}
     </ul>
 
+    {% if site.posts.size == 0 %}
+    <p class="post-list__empty">아직 올라온 글이 없습니다. 첫 글을 준비 중이에요.</p>
+    {% else %}
     <p class="post-list__empty" id="post-list-empty" hidden>조건에 맞는 글이 없습니다.</p>
+    {% endif %}
   </article>
 </div>

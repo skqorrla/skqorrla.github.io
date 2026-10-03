@@ -59,16 +59,86 @@
   --header-h: 60px;
   --hero-h: 400px;
 
+  /* theme-only knobs */
+  --hero-pattern-opacity: 0.08;
+  --code-border: rgba(216, 224, 231, 0.7);
+  --footer-border: transparent;
+  --toast-bg: #1a1a1a;
+  --toast-text: #ffffff;
+  --img-filter: none;
+  --syn-comment: #8898aa;
+  --syn-keyword: #6926ab;
+  --syn-string: #2f855a;
+  --syn-number: #c05621;
+  --syn-func: #2b6cb0;
+  --syn-builtin: #805ad5;
+  color-scheme: light;
+
   /* type */
   --font-en: "Poppins", "Spoqa Han Sans Neo", "Spoqa Han Sans", "Noto Sans KR", sans-serif;  /* 영문 Poppins, 한글은 Spoqa 로 폴백 (예: 카테고리 "기획") */
   --font-kr: "Spoqa Han Sans Neo", "Spoqa Han Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: Menlo, Monaco, "JetBrains Mono", Consolas, monospace;
 }
 
+/* =========================================================
+   Dark mode — Figma "OY Tokens" Dark 모드 / "Blog Key Color" Dark 모드와 1:1
+   헤더 토글(data-theme) 우선, 없으면 OS 설정(prefers-color-scheme)
+   ========================================================= */
+@mixin dark-tokens {
+  --key: #a06ae8;
+  --key-hover: #bb92f3;
+  --key-10: rgba(160, 106, 232, 0.16);
+  --accent: #9be34a;
+
+  --text-strong: #ffffff;
+  --text: #d7dbe2;
+  --text-secondary: #9aa3af;
+  --text-muted: #7c8591;
+  --text-date: #6b737e;
+  --text-table: #c5cad2;
+  --text-footer-sub: #8a8f98;
+  --text-inverse: #ffffff;
+  --code-lineno: #6b737e;
+
+  --bg: #0e1013;
+  --bg-card: #171a1f;
+  --bg-surface: #1c2027;
+  --bg-tag: #22262d;
+  --bg-subtle: #171a1f;
+  --bg-toc-start: #161a20;
+  --bg-toc-end: #1a1f26;
+  --bg-table-head: #2a2f38;
+  --bg-footer: #000000;
+
+  --border: #2a2f38;
+  --border-toc: #262b33;
+  --border-hr: #1f242b;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --bullet: #4a525e;
+
+  --hero-pattern-opacity: 0.12;
+  --code-border: rgba(42, 47, 56, 0.9);
+  --footer-border: #1f242b;
+  --toast-bg: #e9ecf1;
+  --toast-text: #0e1013;
+  --img-filter: brightness(0.9);
+  --syn-comment: #6b737e;
+  --syn-keyword: #bb92f3;
+  --syn-string: #7ed6a2;
+  --syn-number: #f0a36b;
+  --syn-func: #7fb3f5;
+  --syn-builtin: #c9a6ff;
+  color-scheme: dark;
+}
+:root[data-theme="dark"] { @include dark-tokens; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include dark-tokens; }
+}
+
 /* ---------- reset / base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-body { margin: 0; font-family: var(--font-kr); color: var(--text); background: var(--bg); line-height: normal; }
+body { margin: 0; font-family: var(--font-kr); color: var(--text); background: var(--bg); line-height: normal; transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -82,6 +152,7 @@ svg { display: block; }
 /* ---------- header ---------- */
 .site-header { position: relative; background: var(--bg); z-index: 10; }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
+.site-header__right { display: flex; align-items: center; }
 .logo { display: flex; align-items: center; gap: 9px; color: var(--key); }
 .logo__mark { height: 18px; width: auto; display: block; }
 .logo__text { font-size: 18px; font-weight: 600; letter-spacing: -0.01px; color: var(--text-strong); white-space: nowrap; }
@@ -91,6 +162,11 @@ svg { display: block; }
 .site-nav__link.is-active { font-weight: 700; }
 .search-toggle { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--text-strong); }
 .search-toggle svg { width: 22px; height: 22px; }
+.theme-toggle { width: 40px; height: 40px; margin-left: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-strong); }
+.theme-toggle svg { width: 22px; height: 22px; }
+.theme-toggle__sun { display: none; }
+:root[data-theme="dark"] .theme-toggle__moon { display: none; }
+:root[data-theme="dark"] .theme-toggle__sun { display: block; }
 .menu-toggle { display: none; width: 24px; height: 24px; color: var(--text-strong); }
 .menu-toggle svg { width: 24px; height: 24px; }
 .menu-toggle__close { display: none; }
@@ -102,7 +178,7 @@ svg { display: block; }
   position: fixed; top: 16px; left: 50%; z-index: 1000;
   display: flex; align-items: center; gap: 8px; max-width: calc(100% - 40px);
   padding: 12px 20px; border-radius: var(--radius-chip);
-  background: var(--bg-table-head); color: var(--text-inverse); font-size: 14px; font-weight: 500; letter-spacing: -0.01px; white-space: nowrap;
+  background: var(--toast-bg); color: var(--toast-text); font-size: 14px; font-weight: 500; letter-spacing: -0.01px; white-space: nowrap;
   transform: translate(-50%, -140%); opacity: 0; visibility: hidden; pointer-events: none;
   transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out, visibility 0s 0.35s;
 }
@@ -126,6 +202,7 @@ svg { display: block; }
   .site-nav__item { margin: 0; padding: 18px 20px; }
   .site-nav__item--search { display: none; }
   .site-nav__link { font-size: 17px; }
+  .theme-toggle { margin-left: 0; margin-right: 8px; }
   .menu-toggle { display: block; }
 }
 
@@ -135,7 +212,7 @@ svg { display: block; }
 .hero__deco {
   position: absolute; left: 50%; top: 50%; width: 220%; height: 600%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  background-color: var(--key); opacity: 0.08; pointer-events: none;
+  background-color: var(--key); opacity: var(--hero-pattern-opacity); pointer-events: none;
   -webkit-mask-image: url("{{ '/assets/images/40404-tile.svg' | relative_url }}"); mask-image: url("{{ '/assets/images/40404-tile.svg' | relative_url }}");
   -webkit-mask-repeat: repeat; mask-repeat: repeat;
   -webkit-mask-size: 220px 160px; mask-size: 220px 160px;
@@ -246,7 +323,7 @@ svg { display: block; }
   transition: 0.2s ease-in-out;
 }
 .post__content a:hover { color: var(--key); }
-.post__content img { display: block; height: auto; max-width: 100%; margin: 0 auto; border-radius: var(--radius-image); }
+.post__content img { display: block; height: auto; max-width: 100%; margin: 0 auto; border-radius: var(--radius-image); filter: var(--img-filter); }
 .post__content figure { margin: 0; }
 .post__content figcaption,
 .post__content img + em { display: block; color: var(--text-muted); font-size: 14px; font-style: normal; line-height: 1.8; margin-bottom: 40px; text-align: center; }
@@ -256,7 +333,7 @@ svg { display: block; }
 @media (min-width: 600px) { .post__content blockquote { padding: 0 0 0 1.25rem; } }
 .post__content code, .post__content pre { font-family: var(--font-mono); }
 .post__content code { background: var(--bg-surface); border-radius: var(--radius-code); color: var(--key); font-size: 90%; padding: 0.2em 0.4em; }
-.post__content pre { margin: 0 0 1rem; padding: 1em; background: var(--bg-surface); border: 1px solid rgba(216, 224, 231, 0.7); border-radius: var(--radius-code); overflow-x: auto; line-height: 1.5; }
+.post__content pre { margin: 0 0 1rem; padding: 1em; background: var(--bg-surface); border: 1px solid var(--code-border); border-radius: var(--radius-code); overflow-x: auto; line-height: 1.5; }
 .post__content pre code { background: transparent; color: inherit; font-size: 13px; padding: 0; }
 .post__content ol { margin: 0 0 10px; padding-left: 10px; }
 .post__content ol li { list-style: decimal; margin-left: 8px; padding: 3px 0; }
@@ -274,13 +351,13 @@ svg { display: block; }
   .post__content h6 { font-size: 15px; }
 }
 
-/* rouge — 밝은 코드 테마 (키 컬러 기반) */
-.highlight .c, .highlight .c1, .highlight .cm { color: var(--code-lineno); }
-.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr { color: var(--key-hover); font-weight: 600; }
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb { color: #2f855a; }
-.highlight .mi, .highlight .mf, .highlight .m { color: #c05621; }
-.highlight .nf, .highlight .fm { color: #2b6cb0; }
-.highlight .nb, .highlight .bp { color: #805ad5; }
+/* rouge — 코드 테마 (라이트/다크 토큰) */
+.highlight .c, .highlight .c1, .highlight .cm { color: var(--syn-comment); }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr { color: var(--syn-keyword); font-weight: 600; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb { color: var(--syn-string); }
+.highlight .mi, .highlight .mf, .highlight .m { color: var(--syn-number); }
+.highlight .nf, .highlight .fm { color: var(--syn-func); }
+.highlight .nb, .highlight .bp { color: var(--syn-builtin); }
 .highlight .o, .highlight .p { color: var(--text); }
 
 .post__tags { padding-top: 10px; }
@@ -304,7 +381,7 @@ svg { display: block; }
 @media (max-width: 375px) { .author { display: block; } .author__profile { margin-bottom: 20px; } }
 
 /* ---------- footer ---------- */
-.site-footer { margin-top: 180px; padding-top: 40px; background: var(--bg-footer); }
+.site-footer { margin-top: 180px; padding-top: 40px; background: var(--bg-footer); border-top: 1px solid var(--footer-border); }
 .site-footer__copy { display: flex; justify-content: space-between; }
 .site-footer__title { color: var(--text-inverse); font-family: var(--font-en); font-size: 18px; font-weight: 600; letter-spacing: -0.01px; }
 .site-footer__brand { display: flex; align-items: center; gap: 9px; }

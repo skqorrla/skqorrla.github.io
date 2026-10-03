@@ -5,6 +5,7 @@
       <span class="logo__text">{{ site.logo_text }}</span>
     </a>
 
+    <div class="site-header__right">
     <nav class="site-nav" id="site-nav" aria-label="사이트 메뉴">
       <ul class="site-nav__menu">
         {% for item in site.nav %}
@@ -26,10 +27,16 @@
       </ul>
     </nav>
 
+    <button class="theme-toggle" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
       <svg class="menu-toggle__open" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <svg class="menu-toggle__close" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
+    </div>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite">

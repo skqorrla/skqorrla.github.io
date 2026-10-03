@@ -3,6 +3,33 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  /* ---------- theme (light / dark) ---------- */
+  var rootEl = document.documentElement;
+  var themeToggle = $('.theme-toggle');
+  var setTheme = function (t, persist) {
+    rootEl.setAttribute('data-theme', t);
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-label', t === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+      themeToggle.setAttribute('aria-pressed', String(t === 'dark'));
+    }
+    if (persist) { try { localStorage.setItem('theme', t); } catch (e) {} }
+  };
+  setTheme(rootEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      setTheme(rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+    });
+  }
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    var onSystemChange = function (e) {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (err) {}
+      if (stored !== 'dark' && stored !== 'light') setTheme(e.matches ? 'dark' : 'light', false);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onSystemChange); else if (mq.addListener) mq.addListener(onSystemChange);
+  }
+
   /* ---------- mobile menu ---------- */
   var menuToggle = $('.menu-toggle');
   var nav = $('#site-nav');
