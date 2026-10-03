@@ -4,7 +4,7 @@
 title: 40404 테크블로그
 tagline: "40404"
 logo_text: 테크블로그          # 헤더·푸터에서 40404 마크 옆에 붙는 글자
-hero_subtitle: Story of a Curious Engineer
+hero_subtitle: Fix Error with Error      # 오류를 오류한다
 description: 40404 테크블로그 — AI와 오디오, 그리고 글쓰기를 다루는 개발 블로그
 url: "https://skqorrla.github.io"
 baseurl: ""
