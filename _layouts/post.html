@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<article class="post">
+  <div class="post__thumb">
+    {% if page.image %}<img class="post__thumb-img" src="{{ page.image | relative_url }}" alt="">{% endif %}
+  </div>
+
+  <div class="wrapper">
+    <header class="post__info">
+      <div class="post__category">{{ page.category }}</div>
+      <h1 class="post__tit">{{ page.title }}</h1>
+      {% if page.subtitle %}<h2 class="post__sub">{{ page.subtitle }}</h2>{% endif %}
+      <div class="post__date">{{ page.date | date: "%Y.%m.%d" }}</div>
+    </header>
+
+    <nav class="toc" id="toc" hidden aria-label="목차">
+      <div class="toc__header">
+        <span class="toc__icon" aria-hidden="true">📑</span>
+        <span class="toc__title">목차</span>
+      </div>
+      <div class="toc__list" id="toc-list"></div>
+    </nav>
+
+    <div class="post__content" id="post-content">
+      {{ content }}
+    </div>
+
+    {% if page.tags.size > 0 %}
+    <div class="post__tags">
+      {% for tag in page.tags %}<a class="tag tag--highlight" href="{{ '/' | relative_url }}?tag={{ tag | downcase | uri_escape }}">{{ tag }}</a>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% include author.html %}
+  </div>
+</article>

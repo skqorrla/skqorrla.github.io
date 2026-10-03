@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <div class="wrapper">
+    <div class="site-footer__copy">
+      <span class="site-footer__title site-footer__brand">{% include mark.html class="site-footer__mark" %}<span class="site-footer__text">{{ site.logo_text }}</span></span>
+      <ul class="site-footer__links">
+        {% for link in site.footer_links %}
+        <li>
+          {% if link.external %}
+          <a class="site-footer__link" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+          {% elsif link.url contains ':' %}
+          <a class="site-footer__link" href="{{ link.url }}">{{ link.title }}</a>
+          {% else %}
+          <a class="site-footer__link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="site-footer__copy2">
+      <span class="site-footer__title">© {{ site.time | date: "%Y" }} {{ site.title }}</span>
+      <span class="site-footer__sub">Built with Jekyll</span>
+    </div>
+  </div>
+</footer>

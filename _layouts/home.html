@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{% include hero.html %}
+
+<div class="wrapper">
+  <article class="home">
+    <nav class="category-filter" aria-label="카테고리 필터">
+      <a class="category-filter__item is-active" href="{{ '/' | relative_url }}" data-category="all">All</a>
+      {% for cat in site.categories_list %}
+      <a class="category-filter__item" href="#{{ cat | downcase }}" data-category="{{ cat | downcase }}">{{ cat }}</a>
+      {% endfor %}
+    </nav>
+
+    <p class="post-list__status" id="post-list-status" hidden></p>
+
+    <ul class="post-list" id="post-list">
+      {% for post in site.posts %}
+        {% include post-card.html post=post %}
+      {% endfor %}
+    </ul>
+
+    <p class="post-list__empty" id="post-list-empty" hidden>조건에 맞는 글이 없습니다.</p>
+  </article>
+</div>

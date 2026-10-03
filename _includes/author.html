@@ -1,0 +1,15 @@
+<aside class="author" aria-label="작성자">
+  <div class="author__profile">
+    <div class="author__thumb">
+      {% if site.author.avatar != "" %}<img src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}">{% endif %}
+      <span class="author__emoji"><span>{{ site.author.emoji }}</span></span>
+    </div>
+  </div>
+  <div class="author__info">
+    <div class="author__title">
+      <span class="author__name">{{ site.author.name }} |</span>
+      <span class="author__job">{{ site.author.role }}</span>
+    </div>
+    <p class="author__desc">{{ site.author.bio }}</p>
+  </div>
+</aside>

@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------
+# 범서 테크블로그 — 올리브영 테크블로그 패턴 + 보라 키 컬러
+# ---------------------------------------------------------------
+title: 40404 테크블로그
+tagline: "40404"
+logo_text: 테크블로그          # 헤더·푸터에서 40404 마크 옆에 붙는 글자
+hero_subtitle: Story of a Curious Engineer
+description: 40404 테크블로그 — AI와 오디오, 그리고 글쓰기를 다루는 개발 블로그
+url: "https://skqorrla.github.io"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+
+author:
+  name: 범서
+  role: Fullstack/AI Engineer
+  bio: Trade-off is All You Need
+  emoji: "🎧"
+  avatar: ""            # 예: /assets/images/avatar.jpg (비우면 회색 원)
+  github: https://github.com/skqorrla
+
+# 헤더 메뉴 (Figma Header 컴포넌트의 nav)
+nav:
+  - title: About
+    url: /about/
+    coming_soon: true      # true 면 클릭 시 이동 대신 상단 "준비 중" 토스트
+  - title: Portfolio
+    url: /portfolio/
+    coming_soon: true
+search_coming_soon: true   # 돋보기도 준비 중 토스트 (false 로 바꾸면 검색창이 열림)
+
+# 카테고리 필터 (All 은 자동). 글 머리말 category 에 이 중 하나를 그대로 적습니다.
+categories_list: [기획, Full-Stack, AI/ML, Life]
+
+# 푸터 링크 — 앞 4개는 1열, 나머지는 2열 (Figma Footer 컴포넌트)
+footer_links:
+  - { title: GitHub,   url: https://github.com/skqorrla, external: true }
+  - { title: RSS,      url: /feed.xml }
+  - { title: About,    url: /about/ }
+  - { title: Email,    url: "mailto:" }
+  - { title: LinkedIn, url: "#", external: true }
+  - { title: X,        url: "#", external: true }
+
+# 올리브영과 같은 URL 패턴: /2026-08-23/claude-text-watermark/
+permalink: /:year-:month-:day/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "" }
+    values: { layout: page }
+
+exclude:
+  - README.md
+  - docs
+  - scripts
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .jekyll-cache

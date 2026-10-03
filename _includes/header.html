@@ -1,0 +1,45 @@
+<header class="site-header">
+  <div class="wrapper site-header__inner">
+    <a class="logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} 홈">
+      {% include mark.html class="logo__mark" %}
+      <span class="logo__text">{{ site.logo_text }}</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="사이트 메뉴">
+      <ul class="site-nav__menu">
+        {% for item in site.nav %}
+        <li class="site-nav__item">
+          {% if item.coming_soon %}
+          <a class="site-nav__link" href="{{ item.url | relative_url }}" data-coming-soon="{{ item.title }} 페이지는 준비 중이에요">{{ item.title }}</a>
+          {% elsif item.url contains '://' %}
+          <a class="site-nav__link" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+          {% else %}
+          <a class="site-nav__link{% if page.url == item.url %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+        <li class="site-nav__item site-nav__item--search">
+          <button class="search-toggle" type="button" aria-label="검색" aria-expanded="false" aria-controls="search-bar"{% if site.search_coming_soon %} data-coming-soon="검색 기능은 준비 중이에요"{% endif %}>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+      <svg class="menu-toggle__open" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="menu-toggle__close" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast__icon" aria-hidden="true">🚧</span>
+    <span class="toast__text"></span>
+  </div>
+
+  <div class="search-bar" id="search-bar">
+    <form class="wrapper search-bar__form" action="{{ '/' | relative_url }}" method="get" role="search">
+      <input class="search-bar__input" type="search" name="q" placeholder="제목, 요약, 태그로 검색" autocomplete="off" aria-label="검색어">
+    </form>
+  </div>
+</header>

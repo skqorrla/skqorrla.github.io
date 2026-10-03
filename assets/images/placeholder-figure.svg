@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="420" viewBox="0 0 1020 420">
+  <rect width="1020" height="420" rx="8" fill="#F6F9FC"/>
+  <g fill="none" stroke="#D8E0E7" stroke-width="2">
+    <path d="M60 340 H960"/>
+    <path d="M60 340 V60"/>
+  </g>
+  <polyline points="60,300 180,280 300,250 420,200 540,150 660,120 780,100 900,90 960,88" fill="none" stroke="#8232D2" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 200 H960" stroke="#82D232" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="510" y="390" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" fill="#90949A">placeholder figure — 실제 이미지로 교체</text>
+</svg>

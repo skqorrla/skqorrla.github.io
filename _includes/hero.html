@@ -1,0 +1,12 @@
+{% comment %}
+  메인 히어로 — 40404 워드마크를 45° 기울여 반복한 패턴 배경(.hero__deco, CSS mask) 위에
+  40404 마크(타이틀)와 한 줄 소개. 높이: PC/Tablet 400px, Mobile(≤600px) 220px.
+  패턴 타일: /assets/images/40404-tile.svg (피치 220×80, 홀수 줄 110 오프셋), 농도는 .hero__deco 의 opacity.
+{% endcomment %}
+<section class="hero" aria-label="블로그 소개">
+  <div class="hero__deco" aria-hidden="true"></div>
+  <div class="hero__wrapper">
+    <h1 class="hero__title">{% include mark.html class="hero__mark" %}</h1>
+    <p class="hero__sub">{{ site.hero_subtitle }}</p>
+  </div>
+</section>
